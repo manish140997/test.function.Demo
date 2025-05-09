@@ -1,17 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <!-- Optional: Link to CSS stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #2980b9, #6dd5fa);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #2980b9;
+    }
+
+    .password-group {
+      position: relative;
+    }
+
+    .password-group input[type="password"],
+    .password-group input[type="text"] {
+      padding-right: 40px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 36px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #2980b9;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #216796;
+    }
+
+    @media (max-width: 480px) {
+      .login-box {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="Enter your email" />
+      </div>
 
-    <p>Content goes here</p>
+      <div class="form-group password-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="Enter your password" />
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
 
-    <p>Optional: Link to JavaScript file</p>
-    <script src="script.js"></script>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.querySelector(".toggle-password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = "🙈";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "👁️";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Simulate login success
+      alert(`Logged in as: ${email}`);
+    });
+  </script>
 </body>
 </html>
